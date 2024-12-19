@@ -1,4 +1,4 @@
-import {getEnv} from "../lib/environment";
+import {getEnv} from "../lib";
 
 describe('util', () => {
     it('should return actual value if set', () => {

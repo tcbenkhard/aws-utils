@@ -1,4 +1,4 @@
-import {wrapHandler} from "../lib/lambda";
+import {wrapHandler} from "../lib";
 import {APIGatewayProxyEvent, Context} from "aws-lambda";
 
 describe('Lambda wrapper function', () => {
