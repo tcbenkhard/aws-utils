@@ -21,4 +21,12 @@ export class ServerError extends Error{
     static badRequest(errorCode: string, errorMessage: string) {
         return new ServerError(400, errorCode, errorMessage)
     }
+
+    static unauthorized(errorCode: string, errorMessage: string) {
+        return new ServerError(401, errorCode, errorMessage)
+    }
+
+    static forbidden(errorCode: string, errorMessage: string) {
+        return new ServerError(403, errorCode, errorMessage)
+    }
 }
