@@ -4,7 +4,7 @@ import {ServerError} from "./errors";
 export class ParsingException extends Error {}
 
 export const parseBody = (body: string | null, schema: ZodSchema<any>, extras: Partial<z.infer<typeof schema>> = {}) => {
-    if(!body) throw ServerError.badRequest("MISSING_BODY", "Missing body")
+    if(!body) body = "{}"
     try {
         const jsonBody = JSON.parse(body)
         return schema.parse({...jsonBody, ...extras})

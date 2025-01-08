@@ -9,8 +9,9 @@ const objectWithExtras = z.object({
 })
 
 describe('Json utils', () => {
-    it('should raise on missing body', () => {
-        expect(() => parseBody(null, z.object({}))).toThrow(ServerError)
+    it('should not raise on missing body', () => {
+        const result = parseBody(null, z.object({}))
+        expect(result).toEqual({})
     })
 
     it('should raise on invalid json', () => {
