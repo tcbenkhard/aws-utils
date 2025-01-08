@@ -24,7 +24,7 @@ describe('Json utils', () => {
 
     it('should add extras', () => {
         const result = parseBody('{"name": "test"}', objectWithExtras, {
-            extraName: 'superExtra'
+            extraName: "superExtra"
         })
 
         expect(result).toEqual({

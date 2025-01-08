@@ -26,7 +26,7 @@ export class ServerError extends Error {
         return new ServerError(401, errorCode, errorMessage)
     }
 
-    static forbidden(errorCode: string, errorMessage: string) {
+    static forbidden(errorCode: string = "FORBIDDEN", errorMessage: string = "Insufficient permissions") {
         return new ServerError(403, errorCode, errorMessage)
     }
 }
