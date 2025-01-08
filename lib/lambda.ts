@@ -36,7 +36,7 @@ export abstract class BaseHandler<RequestType, ResponseType> {
         private accessControlAllowOrigin: string = '*') {}
 
     abstract parseEvent(event: APIGatewayProxyEvent) : Promise<RequestType>
-    protected isAuthorized(event: APIGatewayProxyEvent) : boolean {
+    async isAuthorized(event: APIGatewayProxyEvent, request: RequestType) : Promise<boolean> {
         return true
     }
     abstract handleRequest(request: RequestType) : Promise<ResponseType>
@@ -44,8 +44,8 @@ export abstract class BaseHandler<RequestType, ResponseType> {
     public async handle(event: APIGatewayProxyEvent, context: Context): Promise<APIGatewayProxyResult> {
         try {
             console.info("Received event:", event)
-            if(!this.isAuthorized(event)) throw ServerError.forbidden()
             const request = await this.parseEvent(event)
+            if(!await this.isAuthorized(event, request)) throw ServerError.forbidden()
             const result = await this.handleRequest(request)
             console.info("Finished handling event", result)
             return {
